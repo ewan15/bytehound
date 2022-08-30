@@ -373,7 +373,7 @@ export default class PageDataOverview extends React.Component {
                     <ContextMenuTrigger id="overview_context_menu" ref={c => this.context_trigger = c}></ContextMenuTrigger>
                     <ContextMenu id="overview_context_menu">
                         <MenuItem>
-                            <Link to={this.allocatedRangeLink()}>Allocated between {this.getSelectedRange()}</Link>
+                            <Link to={this.allocationsAllocatedInRangeLink()}>Allocations: allocated in current range (between {this.getSelectedRange()})</Link>
                         </MenuItem>
                     </ContextMenu>
                 </div>
@@ -381,7 +381,7 @@ export default class PageDataOverview extends React.Component {
         );
     }
 
-    allocatedRangeLink() {
+    allocationsAllocatedInRangeLink() {
         if( this.state.context_range === undefined ) {
             return "/";
         }
