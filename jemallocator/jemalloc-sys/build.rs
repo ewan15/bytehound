@@ -91,7 +91,9 @@ fn main() {
         println!("cargo:rustc-cfg=prefixed");
     }
 
-    println!("cargo:rustc-link-lib={}={}", "dylib", "preload_syscallee");
+    let preload_syscalee = env::var_os("PRELOAD_SYSCALLEE").unwrap();
+    println!("cargo:rustc-link-search={}", preload_syscalee.to_str().unwrap());
+    println!("cargo:rustc-link-lib={}={}", "static", "preload_syscallee");
     if let Some(jemalloc) = env::var_os("JEMALLOC_OVERRIDE") {
         info!("jemalloc override set");
         let jemalloc = PathBuf::from(jemalloc);
